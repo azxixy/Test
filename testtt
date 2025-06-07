@@ -1,0 +1,30 @@
+#!/bin/bash
+
+repo_dir="test-contributions"
+mkdir -p "$repo_dir"
+cd "$repo_dir"
+git init
+
+# Configure user if needed (replace with your info)
+git config user.name "Your Name"
+git config user.email "your-email@example.com"
+
+# Create a file to commit
+touch contributions.txt
+git add contributions.txt
+git commit -m "Initial commit"
+
+# Add commits for multiple past days
+for i in {1..30}; do
+  echo "Contribution $i" >> contributions.txt
+  git add contributions.txt
+  
+  # Set commit date back i days
+  GIT_COMMITTER_DATE="$(date -d "$i days ago" --iso-8601=seconds)" \
+  git commit --date "$(date -d "$i days ago" --iso-8601=seconds)" -m "Commit $i"
+done
+
+# Add remote and push to GitHub (replace URL with your repo URL)
+git remote add origin https://github.com/yourusername/test-contributions.git
+git branch -M main
+git push -u origin main
