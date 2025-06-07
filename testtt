@@ -4,7 +4,7 @@ repo_dir="test-contributions"
 mkdir -p "$repo_dir"
 cd "$repo_dir"
 git init
-
+ 
 # Configure user if needed (replace with your info)
 git config user.name "Your Name"
 git config user.email "your-email@example.com"
